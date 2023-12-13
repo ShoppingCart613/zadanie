@@ -16,6 +16,8 @@ class MyForm(QDialog):
         def walidacja(self):
             numer = self.ui.nrtel.text()
             pesel = self.ui.pesel.text()
+            imie = self.ui.imie.text()
+            nazwisko = self.ui.nazwisko.text()
             if(len(numer) == 9):
                 try:
                     numer = int(numer)
@@ -63,6 +65,7 @@ class MyForm(QDialog):
                 alert.setInformativeText("dodano")
                 alert.setStandardButtons(QMessageBox.StandardButton.Ok)
                 alert.exec()
+                self.ui.lista.addItem(imie,nazwisko)
             else:
                 alert = QMessageBox()
                 alert.setWindowTitle("błąd")

@@ -45,6 +45,9 @@ class Ui_Dialog(object):
         self.pesel.setGeometry(QtCore.QRect(80, 100, 251, 21))
         self.pesel.setMaxLength(11)
         self.pesel.setObjectName("pesel")
+        self.lista = QtWidgets.QComboBox(parent=Dialog)
+        self.lista.setGeometry(QtCore.QRect(20, 190, 131, 21))
+        self.lista.setObjectName("lista")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
