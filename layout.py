@@ -29,7 +29,7 @@ class Ui_Dialog(object):
         self.umowa.setGeometry(QtCore.QRect(20, 140, 171, 16))
         self.umowa.setObjectName("umowa")
         self.zapisz = QtWidgets.QPushButton(parent=Dialog)
-        self.zapisz.setGeometry(QtCore.QRect(250, 180, 81, 21))
+        self.zapisz.setGeometry(QtCore.QRect(80, 190, 81, 21))
         self.zapisz.setObjectName("zapisz")
         self.imie = QtWidgets.QLineEdit(parent=Dialog)
         self.imie.setGeometry(QtCore.QRect(80, 10, 251, 21))
@@ -46,8 +46,11 @@ class Ui_Dialog(object):
         self.pesel.setMaxLength(11)
         self.pesel.setObjectName("pesel")
         self.lista = QtWidgets.QComboBox(parent=Dialog)
-        self.lista.setGeometry(QtCore.QRect(20, 190, 131, 21))
+        self.lista.setGeometry(QtCore.QRect(20, 240, 171, 21))
         self.lista.setObjectName("lista")
+        self.zapiszplik = QtWidgets.QPushButton(parent=Dialog)
+        self.zapiszplik.setGeometry(QtCore.QRect(210, 190, 81, 21))
+        self.zapiszplik.setObjectName("zapiszplik")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -61,6 +64,7 @@ class Ui_Dialog(object):
         self.label_4.setText(_translate("Dialog", "PESEL"))
         self.umowa.setText(_translate("Dialog", "Umowa o prace"))
         self.zapisz.setText(_translate("Dialog", "Zapisz"))
+        self.zapiszplik.setText(_translate("Dialog", "Zapisz do pliku"))
 
 
 if __name__ == "__main__":

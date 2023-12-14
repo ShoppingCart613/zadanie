@@ -11,9 +11,13 @@ class MyForm(QDialog):
             self.ui = Ui_Dialog()
             self.ui.setupUi(self)
             self.ui.zapisz.clicked.connect(self.walidacja)
+            self.ui.zapiszplik.clicked.connect(self.zapisz_do_pliku)
             self.show()
 
         def walidacja(self):
+            alert = QMessageBox()
+            alert.setWindowTitle("błąd")
+            alert.setStandardButtons(QMessageBox.StandardButton.Ok)
             numer = self.ui.nrtel.text()
             pesel = self.ui.pesel.text()
             imie = self.ui.imie.text()
@@ -22,34 +26,22 @@ class MyForm(QDialog):
                 try:
                     numer = int(numer)
                 except:
-                    alert = QMessageBox()
-                    alert.setWindowTitle("błąd")
                     alert.setInformativeText("nieprawidłowy numer telefonu")
-                    alert.setStandardButtons(QMessageBox.StandardButton.Ok)
                     alert.exec()
                     return False
             else:
-                alert = QMessageBox()
-                alert.setWindowTitle("błąd")
                 alert.setInformativeText("za krótki numer telefonu")
-                alert.setStandardButtons(QMessageBox.StandardButton.Ok)
                 alert.exec()
                 return False
             if (len(pesel) == 11):
                 try:
-                    pesel = int(pesel)
+                    int(pesel)
                 except:
-                    alert = QMessageBox()
-                    alert.setWindowTitle("błąd")
                     alert.setInformativeText("nieprawidłowy PESEL")
-                    alert.setStandardButtons(QMessageBox.StandardButton.Ok)
                     alert.exec()
                     return False
             else:
-                alert = QMessageBox()
-                alert.setWindowTitle("błąd")
                 alert.setInformativeText("za krótki pesel")
-                alert.setStandardButtons(QMessageBox.StandardButton.Ok)
                 alert.exec()
                 return False
 
@@ -60,19 +52,23 @@ class MyForm(QDialog):
             if suma >= 10:
                 suma = (suma%10)
             if int(pesel[10])==10-suma%10:
-                alert = QMessageBox()
                 alert.setWindowTitle(":)")
                 alert.setInformativeText("dodano")
-                alert.setStandardButtons(QMessageBox.StandardButton.Ok)
                 alert.exec()
-                self.ui.lista.addItem(imie,nazwisko)
+                nazwa = imie +" "+ nazwisko
+                self.ui.lista.addItem(nazwa )
             else:
-                alert = QMessageBox()
-                alert.setWindowTitle("błąd")
                 alert.setInformativeText("zły pesel")
-                alert.setStandardButtons(QMessageBox.StandardButton.Ok)
                 alert.exec()
+                return False
 
+        def zapisz_do_pliku(self):
+            self.walidacja()
+            zapis=""
+            for i in range(self.ui.lista.count()):
+                zapis += self.ui.lista.itemText(i)+"\n"
+                with open("lista.txt","w") as file:
+                    file.write(zapis)
 
 
 
