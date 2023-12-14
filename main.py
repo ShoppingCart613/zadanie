@@ -6,8 +6,8 @@ from layout import Ui_Dialog
 
 
 class MyForm(QDialog):
+        isValid = True
         def __init__(self):
-            isValid = True
             super().__init__()
             self.ui = Ui_Dialog()
             self.ui.setupUi(self)
@@ -23,16 +23,6 @@ class MyForm(QDialog):
             pesel = self.ui.pesel.text()
             imie = self.ui.imie.text()
             nazwisko = self.ui.nazwisko.text()
-            if(len(imie) < 3):
-                alert.setInformativeText("za krótkie imie (minimum 3)")
-                alert.exec()
-                self.isValid = False
-                return False
-            if (len(nazwisko) < 3):
-                alert.setInformativeText("za krótkie nazwisko (minimum 3)")
-                alert.exec()
-                self.isValid = False
-                return False
             if(len(numer) == 9):
                 try:
                     numer = int(numer)
